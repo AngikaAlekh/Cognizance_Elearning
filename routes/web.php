@@ -29,5 +29,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/category/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit']);
     Route::post('/category/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update']);
     Route::get('/category/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
-    
+
+    Route::get('/trash', [App\Http\Controllers\Admin\CategoryController::class, 'trash']);
+    Route::get('/trash/restore/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'restore']);
+    Route::get('/trash/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'delete']);
 });
