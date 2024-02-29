@@ -37,15 +37,14 @@
                 $featured_categories = App\Models\FeaturedCategory::all();
             @endphp
 
-            @foreach ($featured_categories as $category)
+            @foreach ($featured_categories as $fcat)
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('uploads/category/' . $category->category->image) }}" class="card-img-top"
-                            alt="...">
+                        <img src="{{ asset('uploads/category/' . $fcat->category->image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $category->category->title }}</h5>
+                            <h5 class="card-title">{{ $fcat->category->title }}</h5>
                             <p class="card-text"></p>
-                            <a href="#" class="btn btn-primary">Browse</a>
+                            <a href="{{url('/category/'.$fcat->category->slug)}}" class="btn btn-primary">Browse</a>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,8 @@ class FeaturedController extends Controller
 {
     public function view_featured_categories(){
         $categories = Category::all();
-        return view ('admin.featured.category', compact('categories'));
+        $featured_categories = FeaturedCategory::all();
+        return view ('admin.featured.category', compact('categories', 'featured_categories'));
     }
 
     public function store_featured_category(Request $request){
@@ -26,6 +27,17 @@ class FeaturedController extends Controller
             $featuredCategory->save();
     
             return redirect('/admin/featured/categories')->with('success', 'Category successfully added to Featured List!');
+        }
+    }
+
+    public function remove_featured_category($id){
+        $featuredCategory = FeaturedCategory::find($id);
+        if ($featuredCategory){
+            $featuredCategory->delete();
+            return redirect('/admin/featured/categories')->with('success', 'Category successfully removed from the Featured List!');
+        }
+        else{
+            return redirect('/admin/featured/categories')->with('error', 'Category not found!');
         }
     }
 

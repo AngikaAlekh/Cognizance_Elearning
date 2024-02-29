@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Category;
+
 class FeaturedCategory extends Model
 {
     use HasFactory;
-
-    protected $table = 'featured_categories';
 
     protected $fillable = [
         'category_id',
@@ -19,5 +19,4 @@ class FeaturedCategory extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
-
 }
