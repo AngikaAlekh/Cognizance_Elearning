@@ -3,8 +3,8 @@
 @section('title', 'Create Course - Elearning')
 
 @section('custom_styles')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('admin/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('admin/css/summernote-bs4.min.css')}}">
 @endsection
 
 @section('content')
@@ -31,20 +31,34 @@
                 <div class="mb-3">
                     <label for="">Category</label>
                     <select name="category_id" class="form-control">
-                        <option value="0">Web</option>
+                        @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->title}}</option>
+                        @endforeach
                     </select>
+                    @error('category_id')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="">Course Title</label>
                     <input class="form-control" type="text" name="title">
+                    @error('title')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="">Short Description</label>
                     <input class="form-control" type="text" name="description">
+                    @error('description')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="">Long Description</label>
                     <textarea name="long_description" id="course_summernote" cols="30" rows="10"></textarea>
+                    @error('long_description')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="">Video URL</label>
@@ -53,6 +67,13 @@
                 <div class="mb-3">
                     <label for="">Slug</label>
                     <input class="form-control" type="text" name="slug">
+                    @error('slug')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="">Price</label>
+                    <input class="form-control" type="text" name="price">
                 </div>
                 <div class="mb-3">
                     <label for="">Course Thumbnail</label>
@@ -76,10 +97,10 @@
 @endsection
 
 @section('custom_scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script src="{{asset('admin/js/jquery-3.5.1.min.js')}}"></script>
+<script src="{{asset('admin/js/popper.min.js')}}"></script>
+<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('admin/js/summernote-bs4.min.js')}}"></script>
 <script>
     $(document).ready(function() {
         $('#course_summernote').summernote({

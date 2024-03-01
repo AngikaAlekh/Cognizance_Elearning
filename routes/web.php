@@ -9,15 +9,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/admin', function(){
-    return view('adminPage');
-})->middleware(['auth', 'admin']);
-
-Route::get('/user', function(){
-    return view('userPage');
-});
+Route::get('/category/{slug}', [App\Http\Controllers\Client\CategoryController::class,'index']);
 
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
