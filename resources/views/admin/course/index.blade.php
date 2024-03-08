@@ -44,6 +44,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{-- @php
+                            dd($courses[2]->category);
+                            die;
+                        @endphp --}}
                         @foreach ($courses as $course)
                         <tr>
                             <td>{{$course->title}}</td>

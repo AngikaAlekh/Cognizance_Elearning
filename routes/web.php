@@ -9,8 +9,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/categories', [App\Http\Controllers\Client\CategoryController::class,'view_categories']);
 Route::get('/category/{slug}', [App\Http\Controllers\Client\CategoryController::class,'index']);
 Route::get('/category/{category_slug}/{course_slug}', [App\Http\Controllers\Client\CourseController::class,'index']);
+
+Route::get('/enroll/{course_id}', [App\Http\Controllers\Client\EnrollmentController::class,'enrollment'])->middleware(['auth']);
+
+Route::get('/profile', [App\Http\Controllers\Client\ProfileController::class,'index'])->middleware(['auth']);
 
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {

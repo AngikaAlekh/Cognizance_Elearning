@@ -20,7 +20,21 @@
                     <h2 class="text-danger">₹ {{$course->price}}</h2>
                 </div>
                 <div class="col-md-12">
-                    <a href="{{url('')}}" class="btn btn-primary">Subscribe</a>
+                    @guest
+                    <a href="{{url('/enroll/'.$course->id)}}" class="btn btn-primary">Enroll</a>
+                    @else
+                        @php
+                            $isEnrolled = App\Models\Enrollment::where("user_id", Auth::user()->id)
+                                ->where("course_id", $course->id)
+                                ->latest()
+                                ->first();
+                        @endphp
+                        @if ($isEnrolled)
+                        <button class="btn btn-primary" disabled>Enrolled</button>
+                        @else
+                        <a href="{{url('/enroll/'.$course->id)}}" class="btn btn-primary">Enroll</a>
+                        @endif
+                    @endguest
                 </div>
             </div>
         </div>

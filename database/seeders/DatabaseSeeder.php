@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // \App\Models\User::factory()->create([
-        //     'name' => 'Common Admin',
-        //     'email' => 'user@elearning.com',
+        //     'name' => 'Reeta Kumari',
+        //     'email' => 'reeta@elearning.com',
         //     'password' => '123456789',
         //     'role' => '0'
         // ]);
