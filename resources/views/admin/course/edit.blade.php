@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Create Course - Elearning')
+@section('title', 'Edit Course - Elearning')
 
 @section('custom_styles')
     <link rel="stylesheet" href="{{ asset('admin/css/summernote-lite.min.css') }}">
@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Create Course</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Course</h1>
         <a href="{{ url('/admin/courses/') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-download fa-sm text-white-50"></i> View All Courses</a>
     </div>
@@ -21,18 +21,23 @@
                         {{ session('success') }}
                     </div>
                 @endif
+                @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ url('/admin/course/create') }}" method="post" class="card shadow rounded p-3"
+                <form action="{{ url('/admin/course/update/'.$course->id) }}" method="post" class="card shadow rounded p-3"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="">Category</label>
                         <select name="category_id" class="form-control">
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                <option value="{{ $category->id }}" {{$course->category_id == $category->id ? "selected" : ""}}>{{ $category->title }}</option>
                             @endforeach
                         </select>
                         @error('category_id')
@@ -41,54 +46,61 @@
                     </div>
                     <div class="mb-3">
                         <label for="">Course Title</label>
-                        <input class="form-control" type="text" name="title">
+                        <input class="form-control" type="text" name="title" value="{{$course->title}}">
                         @error('title')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="">Short Description</label>
-                        <input class="form-control" type="text" name="description">
+                        <input class="form-control" type="text" name="description" value="{{$course->description}}">
                         @error('description')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="">Long Description</label>
-                        <textarea name="long_description" id="course_summernote" cols="30" rows="10"></textarea>
+                        <textarea name="long_description" id="course_summernote" cols="30" rows="10">
+                            {{$course->long_description}}
+                        </textarea>
                         @error('long_description')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="">Video URL</label>
-                        <input class="form-control" type="text" name="video">
+                        <input class="form-control" type="text" name="video" value="{{$course->video}}">
                     </div>
                     <div class="mb-3">
                         <label for="">Slug</label>
-                        <input class="form-control" type="text" name="slug">
+                        <input class="form-control" type="text" name="slug" value="{{$course->slug}}">
                         @error('slug')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="mb-3">
                         <label for="">Price</label>
-                        <input class="form-control" type="text" name="price">
+                        <input class="form-control" type="text" name="price" value="{{$course->price}}">
                     </div>
-                    <div class="mb-3">
-                        <label for="">Course Thumbnail</label>
-                        <input class="form-control" type="file" name="image">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="">Course Thumbnail</label>
+                            <input class="form-control" type="file" name="image">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="{{asset('uploads/course/'.$course->image)}}" alt="" height="350">
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="">Meta Course Title</label>
-                        <input class="form-control" type="text" name="meta_title">
+                        <input class="form-control" type="text" name="meta_title" value="{{$course->meta_title}}">
                     </div>
                     <div class="mb-3">
                         <label for="">Meta Course Description</label>
-                        <input class="form-control" type="text" name="meta_description">
+                        <input class="form-control" type="text" name="meta_description" value="{{$course->meta_description}}">
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-primary" type="submit">Create</button>
+                        <button class="btn btn-primary" type="submit">Update</button>
                     </div>
                 </form>
             </div>

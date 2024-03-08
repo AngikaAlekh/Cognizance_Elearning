@@ -21,7 +21,7 @@
                                         </small>
                                 @enderror
                                         <div class="form-floating">
-                                            <input type="email" name="email" class="form-control"  value="{{ old('email') }}" placeholder="email">
+                                            <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
                                             
                                             <label for="floatingInput">Email</label>
                                         </div>

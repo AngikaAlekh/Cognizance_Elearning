@@ -10,6 +10,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/category/{slug}', [App\Http\Controllers\Client\CategoryController::class,'index']);
+Route::get('/category/{category_slug}/{course_slug}', [App\Http\Controllers\Client\CourseController::class,'index']);
 
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {

@@ -288,7 +288,7 @@ strong {
 }
 
 .navbar {
-  background: transparent;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   border-bottom: 1px solid rgba(128, 208, 199, 0.35);
   z-index: 9;
 }

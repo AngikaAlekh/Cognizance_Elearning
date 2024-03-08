@@ -21,11 +21,11 @@
                                            </small>
                                    @enderror
                                            <div class="form-floating">
-                                               <input type="text" name="name" class="form-control"  value="{{ old('name') }}" placeholder="name">
+                                               <input type="text" name="name" class="form-control"   placeholder="name"  value="{{ old('name') }}">
                                                
                                                <label for="floatingInput">Name</label>
                                            </div>
-                            
+                            </div>
                                     <div class="col-md-12">
                                        
                                     @error('email')
@@ -34,7 +34,7 @@
                                         </small>
                                 @enderror
                                         <div class="form-floating">
-                                            <input type="email" name="email" class="form-control"  value="{{ old('email') }}" placeholder="email">
+                                            <input type="email" name="email" class="form-control"  placeholder="email" value="{{ old('email') }}">
                                             
                                             <label for="floatingInput">Email</label>
                                         </div>
@@ -51,6 +51,7 @@
                                             
                                             <label for="floatingInput">Password</label>
                                         </div>
+                                         </div>
 
                                         <div class="col-md-12">
                                    

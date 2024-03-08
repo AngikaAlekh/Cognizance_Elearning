@@ -14,8 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Style> -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,700,700i&display=swap" rel="stylesheet">
-    <link href="{{asset ('client/css/bootstrap.min.css') }}" rel="stylesheet">
+  
+    <link  rel ="stylesheet" href="{{asset ('client/css/bootstrap.min.css') }}" >
 </head>
 <body>
     <div id="app">
@@ -77,7 +77,7 @@
             @yield('content')
         </main>
     </div>
-     <!-- SCRIPt -->
+     <!-- SCRIPts -->
      <script src="{{asset('client/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 </html>

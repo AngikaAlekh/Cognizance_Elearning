@@ -3,7 +3,10 @@
 
 <head>
 @include('layouts.admin.head')
-<title>@yield('title')</title>
+ <title>
+    @yield('title')
+ </title>
+ 
 @include('layouts.admin.styles')
 @yield('custom_styles')
 </head>
@@ -13,7 +16,9 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-      @include('layouts.admin.sidebar') 
+      
+        @include('layouts.admin.sidebar')
+        
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
