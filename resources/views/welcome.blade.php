@@ -31,25 +31,52 @@
     </section>
 
 
-    <div class="container py-5">
+    {{-- <div class="container py-5">
         <div class="row">
             @php
                 $featured_categories = App\Models\FeaturedCategory::all();
+          
+
             @endphp
 
             @foreach ($featured_categories as $fcat)
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('uploads/category/' . $fcat->category->image) }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('uploads/category/' . $fcat->image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $fcat->category->title }}</h5>
+                            <h5 class="card-title">{{ $fcat->title }}</h5>
                             <p class="card-text"></p>
-                            <a href="{{url('/category/'.$fcat->category->slug)}}" class="btn btn-primary">Browse</a>
+                            <a href="{{url('/category/'.$fcat->slug)}}" class="btn btn-primary">Browse</a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+    </div> --}}
+    <div class="container py-5">
+        <div class="row">
+            @php
+                // Fetch featured categories along with their associated categories
+                $featured_categories = App\Models\FeaturedCategory::with('category')->get();
+            @endphp
+    
+            @foreach ($featured_categories as $fcat)
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card" style="width: 18rem;">
+                        {{-- Access image, title, and slug from the associated category --}}
+                        @if ($fcat->category)
+                            <img src="{{ asset('uploads/category/' . $fcat->category->image) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $fcat->category->title }}</h5>
+                                <p class="card-text"></p>
+                                <a href="{{ url('/category/' . $fcat->category->slug) }}" class="btn btn-primary">Browse</a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
+    
 
 @endsection
